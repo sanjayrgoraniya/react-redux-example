@@ -1,0 +1,61 @@
+<div class="custom-number-input h-10 w-32">
+  <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">
+    Counter Input
+  </label>
+  <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1 m-1">
+    <input type="number" class="m-0 focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black rounded-l md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+    <div class="inline h-full">
+      <button data-action="decrement" class="relative block bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-1/2 w-8 rounded-tr cursor-pointer outline-none">
+        <span class="font-normal absolute border-black border-t-8 border-b-0 h-0 left-0 right-0 bottom-0">o</span>
+      </button>
+      <button data-action="increment" class="relative block bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-1/2 w-8 rounded-br cursor-pointer outline-none">
+        <span class="font-normal absolute border-black border-b-8 border-t-0 h-0 left-0 right-0 bottom-0">o</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+</style>
+
+<script>
+  function decrement(e) {
+    const btn = e.target.parentNode.parentElement.querySelector(
+      'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+    value--;
+    target.value = value;
+  }
+
+  function increment(e) {
+    const btn = e.target.parentNode.parentElement.querySelector(
+      'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+    value++;
+    target.value = value;
+  }
+
+  const decrementButtons = document.querySelectorAll(
+    `button[data-action="decrement"]`
+  );
+
+  const incrementButtons = document.querySelectorAll(
+    `button[data-action="increment"]`
+  );
+
+  decrementButtons.forEach(btn => {
+    btn.addEventListener("click", decrement);
+  });
+
+  incrementButtons.forEach(btn => {
+    btn.addEventListener("click", increment);
+  });
+</script>
